@@ -1,0 +1,5 @@
+SELECT user_id, COUNT(prompt) AS prompt_count, ROUND( AVG( tokens ), 2) AS avg_tokens
+FROM prompts
+GROUP BY user_id
+HAVING COUNT(prompt) >= 3 AND MAX(tokens) > ROUND( AVG( tokens ), 2) 
+ORDER BY avg_tokens DESC
